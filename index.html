@@ -15,12 +15,32 @@
   <body>
     <h1>QR-code Reader</h1>
     <div style="width: 500px" id="reader"></div>
-    <div id="result"></div>
+    <div id="result">
+
+    </div>
     <script>
         function onScanSuccess(decodedText, decodedResult) {
             // Handle on success condition with the decoded text or result.
             console.log(`Scan result: ${decodedText}`, decodedResult);
+            const p = document.createElement("p");
+            const result = document.getElementById("result");
+            const again = document.createElement("button");
+            again.innerHTML = "Scan Again";
+           result.innerHTML = p.innerHTML = decodedText;
+            result.appendChild(p);
+            result.style.color = "green";
+            result.style.display = "block";
+            result.appendChild(again);
+            again.addEventListener("click", () => {
+                result.style.display = "none";
+                html5QrcodeScanner.render(onScanSuccess);
+            });
+        
         }
+        const onScanError = (errorMessage) => {
+            // handle on error condition, with error message
+            console.log(errorMessage);
+        };
         
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "reader", { fps: 10, qrbox: 250 });
