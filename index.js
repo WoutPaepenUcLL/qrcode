@@ -1,5 +1,7 @@
+// define html5 qrcode import
+import { Html5QrcodeScanner } from "./html5-qrcode.min.js";
 
-// Create a new instance of Html5QrcodeScanner
+
 
 const scanner = new Html5QrcodeScanner('reader', { 
     // Scanner will be initialized in DOM inside element with id of 'reader'
