@@ -9,6 +9,25 @@
     <script src="./index.js" defer></script>
 </head>
 <body>
+    <h1>QR-code Reader</h1>
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            // Handle on success condition with the decoded text or result.
+            console.log(`Scan result: ${decodedText}`, decodedResult);
+        }
+        function onScanFailure(error) {
+            // handle scan failure, usually better to ignore and keep scanning.
+            // for example:
+            // console.warn(`QR error = ${error}`);
+        }
+        function onScanComplete(decodedText, decodedResult) {
+            // when a scan is completed, show the full value
+            console.log(`Scan complete, decodedText = ${decodedText}`, decodedResult);
+        }
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
     <div id="reader"></div>
     <div id="result"></div>
 </body>
