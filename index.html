@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./normalize.css" rel="stylesheet" />
     <title>QR-code Reader</title>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js"
@@ -11,7 +12,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-  </head>
+
+</head>
   <body>
     <h1>QR-code Reader</h1>
     <div style="width: 500px" id="reader"></div>
@@ -30,7 +32,11 @@
            result.innerHTML = p.innerHTML = `Scan result: ${decodedText}`;
             result.appendChild(p);
             result.style.color = "white";
-            result.style.display = "block";
+            result.style.display = "flex";
+            result.style.alignContent = "center";
+            result.style.justifyContent = "center";
+            result.style.height = "100vh";
+            result.style.fontSize = "2rem";
             result.style.textAlign = "center";
             result.style.backgroundColor = "green"
             result.appendChild(again);
