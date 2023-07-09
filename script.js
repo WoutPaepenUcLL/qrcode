@@ -1,6 +1,8 @@
 import Html5QrcodeScanner from "html5-qrcode";
-const html5QrCode = new Html5QrcodeScanner("result");
+const html5QrCode = new Html5QrcodeScanner("reader");
 html5QrCode.render(onScanSuccess);
+
+//scanner on id camera
 
 
     
