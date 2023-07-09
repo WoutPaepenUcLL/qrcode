@@ -12,6 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="./script.js" defer></script>
 
 </head>
   <body>
@@ -20,52 +21,6 @@
     <div id="result">
 
     </div>
-    <script>
-        const csv = require('csv-parser');
-        function onScanSuccess(decodedText, decodedResult) {
-            // Handle on success condition with the decoded text or result.
-            //take the first 36 characters of the decoded text
-            const decodedText_sliced = decodedText.slice(0, 36);
-            //search in csv file for the decoded text in second column and return the first column and the third column
-            fs.createReadStream('data.csv')
-            .pipe(csv())
-            .on('data', (row) => {
-                if (row[1] === decodedText_sliced) {
-                    const name = row[0];
-                    const patrouille = row[2];
-                }
-            })
-            console.log(`Scan result: ${decodedText}`, decodedResult);
-            html5QrcodeScanner.clear();
-            const p = document.createElement("p");
-            const result = document.getElementById("result");
-            const again = document.createElement("button");
-            again.innerHTML = "Scan Again";
-           result.innerHTML = p.innerHTML = `Welkom ${name} \n u ligt op kamping ${patrouille}`;
-            result.appendChild(p);
-            result.style.color = "white";
-            result.style.display = "flex";
-            
-            result.style.flexDirection = " column";
-            result.style.height = "100vh";
-            result.style.fontSize = "2rem";
-            result.style.textAlign = "center";
-            result.style.backgroundColor = "green"
-            result.appendChild(again);
-            again.addEventListener("click", () => {
-                result.style.display = "none";
-                html5QrcodeScanner.render(onScanSuccess);
-            });
-        
-        }
-        const onScanError = (errorMessage) => {
-            // handle on error condition, with error message
-            console.log(errorMessage);
-        };
-        
-        var html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", { fps: 10, qrbox: 250 });
-        html5QrcodeScanner.render(onScanSuccess);
-    </script>
+    
   </body>
 </html>
