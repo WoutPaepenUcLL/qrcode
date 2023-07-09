@@ -44,6 +44,11 @@
         </div>
       `;
       resultContainer.style.display = "flex";
+      //listen for a click on the card
+      resultContainer.addEventListener("click", () => {
+        resultContainer.style.display = "none";
+        html5QrCode.start({ facingMode: "environment" }, onScanSuccess);
+      });
 
       console.log(lid);
     }
