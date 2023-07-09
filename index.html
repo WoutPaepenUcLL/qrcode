@@ -24,19 +24,44 @@
     </div>
     
   </body>
-  <script>
-    const onScanSuccess = async (decodedText, decodedResult) => {
+  <script type="text/javascript">
+    const onScanSuccess = async (decodedText) =>{
       const response = await fetch('data_names.json');
-      const data = await response.json();
+      let data = await response.json();
       const decodedText_sliced = decodedText.slice(0, 36);
-      const name = data.array.forEach(element => {
-        if (element.id === decodedText_sliced) {
-          return element.name;
+      const lid = data.find(element => element.ID === decodedText_sliced);
+      //display the result
+      const resultContainer = document.getElementById("result");
+      resultContainer.innerHTML = `
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Naam : ${lid.Name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Patrouille : ${lid.Patrouille}</h6>
+            <p class="card-text">ID : ${lid.ID}</p>
+          </div>
+        </div>
+      `;
+
+      console.log(lid);
+    }
+    const _onScanSuccess = async (decodedText, decodedResult) => {
+      const response = await fetch('data_names.json');
+      let data = await response.json();
+      //make a list with all objects in json file
+      data = [...data];
+
+      const decodedText_sliced = decodedText.slice(0, 36);
+      const name = data.forEach(element => {
+        if (element.ID === decodedText_sliced) {
+          return element.Name;
+        }
+        else{
+          console.log("error");
         }
       });
-      const patrouille = data.array.forEach(element => {
-        if (element.id === decodedText_sliced) {
-          return element.patrouille;
+      const patrouille = data.forEach(element => {
+        if (element.ID === decodedText_sliced) {
+          return element.Patrouille;
         }
       });
       const resultContainer = document.getElementById("result");
