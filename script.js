@@ -1,5 +1,5 @@
 import Html5QrcodeScanner from "html5-qrcode";
-const html5QrCode = new Html5QrcodeScanner("reader");
+const html5QrCode = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250, aspectRatio: devicePixelRatio, disableFlip: false, disableAutoFocus: false, disableExif: false});
 html5QrCode.render(onScanSuccess);
 
 //scanner on id camera
