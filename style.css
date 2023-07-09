@@ -9,6 +9,13 @@ body{
     box-sizing: border-box;
     background-color: black;
 }
+#reader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
 /* #result is a alert elemen */
 #result{
     position: absolute;

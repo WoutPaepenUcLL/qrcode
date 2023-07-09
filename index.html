@@ -52,45 +52,9 @@
 
       console.log(lid);
     }
-    const _onScanSuccess = async (decodedText, decodedResult) => {
-      const response = await fetch('data_names.json');
-      let data = await response.json();
-      //make a list with all objects in json file
-      data = [...data];
 
-      const decodedText_sliced = decodedText.slice(0, 36);
-      const name = data.forEach(element => {
-        if (element.ID === decodedText_sliced) {
-          return element.Name;
-        }
-        else{
-          console.log("error");
-        }
-      });
-      const patrouille = data.forEach(element => {
-        if (element.ID === decodedText_sliced) {
-          return element.Patrouille;
-        }
-      });
-      const resultContainer = document.getElementById("result");
-      resultContainer.innerHTML = `
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Naam : ${name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Patrouille : ${patrouille}</h6>
-            <p class="card-text">ID : ${decodedText_sliced}</p>
-          </div>
-        </div>
-      `;
-      //stop the scanner
-      html5QrCode.clear();
-      document.getElementById("reader").remove();
-      //scan again button
-      const scanAgainButton = document.createElement("button");
-      scanAgainButton.innerHTML = "Scan opnieuw";
-    };
     
-    const html5QrCode = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250, aspectRatio: devicePixelRatio, disableFlip: false, disableAutoFocus: false, disableExif: false});
+    const html5QrCode = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250, aspectRatio: 100, disableFlip: false, disableAutoFocus: false, disableExif: false});
     html5QrCode.render(onScanSuccess);
   </script>
   <script type="text/javascript" src="./script.js" defer></script>
