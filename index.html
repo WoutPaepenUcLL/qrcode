@@ -21,15 +21,27 @@
 
     </div>
     <script>
+        const csv = require('csv-parser');
         function onScanSuccess(decodedText, decodedResult) {
             // Handle on success condition with the decoded text or result.
+            //take the first 36 characters of the decoded text
+            const decodedText_sliced = decodedText.slice(0, 36);
+            //search in csv file for the decoded text in second column and return the first column and the third column
+            fs.createReadStream('data.csv')
+            .pipe(csv())
+            .on('data', (row) => {
+                if (row[1] === decodedText_sliced) {
+                    const name = row[0];
+                    const patrouille = row[2];
+                }
+            })
             console.log(`Scan result: ${decodedText}`, decodedResult);
             html5QrcodeScanner.clear();
             const p = document.createElement("p");
             const result = document.getElementById("result");
             const again = document.createElement("button");
             again.innerHTML = "Scan Again";
-           result.innerHTML = p.innerHTML = `Scan result: ${decodedText}`;
+           result.innerHTML = p.innerHTML = `Welkom ${name} \n u ligt op kamping ${patrouille}`;
             result.appendChild(p);
             result.style.color = "white";
             result.style.display = "flex";
