@@ -25,10 +25,7 @@ body{
     height: 100vh;
 }
 /* #result is a alert elemen */
-.m{
-    margin-bottom: 1rem;
-    margin-left: 1.5rem;
-}
+
 #result{
     position: absolute;
     top: 0;
