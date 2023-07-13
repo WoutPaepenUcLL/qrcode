@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 h1{
     font-family: monospace;
@@ -26,6 +27,7 @@ body{
 /* #result is a alert elemen */
 .m{
     margin-bottom: 1rem;
+    margin-left: 1.5rem;
 }
 #result{
     position: absolute;
