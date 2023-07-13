@@ -1,3 +1,10 @@
+
+/* everything fits on the phonescreen*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 h1{
     font-family: monospace;
     font-size: 50px;
@@ -38,6 +45,26 @@ body{
 }
 /* phone size */
 @media only screen and (max-width: 600px) {
+    h1{
+        font-size: 30px;
+    }
+    /*max no scroll*/
+    body{
+        max-height: 100vh;
+        overflow: hidden;
+    }
+    /* #result is a alert element that adapts to screensize */
+    #result{
+        font-size: 30px;
+    }
+    #result h1{
+        font-size: 50px;
+    }
+    
+}
+
+/* all fonts fits on screen */
+@media only screen and (max-width: 1000px) {
     h1{
         font-size: 30px;
     }
