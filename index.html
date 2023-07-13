@@ -12,33 +12,46 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-  
-    <link rel="stylesheet" href="style.css">
-    
+
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>QR-code Reader</h1>
     <div style="width: 500px" id="reader"></div>
     <div id="cameras"></div>
-    
-    <div id="result">
-      
-    </div>
-    
+
+    <div id="result"></div>
   </body>
   <script type="text/javascript">
-    const onScanSuccess = async (decodedText) =>{
-      const response = await fetch('data_names.json');
+    const onScanSuccess = async (decodedText) => {
+      const response = await fetch("data_names.json");
       let data = await response.json();
       const decodedText_sliced = decodedText.slice(0, 36);
-      const lid = data.find(element => element.ID === decodedText_sliced);
+      const lid = data.find((element) => element.ID === decodedText_sliced);
       //display the result
       const resultContainer = document.getElementById("result");
+      let Patrouille = lid.Patrouille;
+      switch (Patrouille) {
+        case "1":
+          Patrouille = "Melody Meadow";
+          break;
+        case "2":
+          Patrouille = "armony Heights";
+          break;
+        case "3":
+          Patrouille = "Rhythm Retreat";
+          break;
+        case "4":
+          Patrouille = "Tune Town";
+          break;
+        default:
+          Patrouille = lid.Patrouille;
+      }
       resultContainer.innerHTML = `
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Naam : ${lid.Name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Patrouille : ${lid.Patrouille}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Patrouille : ${Patrouille}</h6>
             <p class="card-text">ID : ${lid.ID}</p>
           </div>
         </div>
@@ -51,10 +64,15 @@
       });
 
       console.log(lid);
-    }
+    };
 
-    
-    const html5QrCode = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250, disableFlip: false, disableAutoFocus: false, disableExif: false});
+    const html5QrCode = new Html5QrcodeScanner("reader", {
+      fps: 10,
+      qrbox: 250,
+      disableFlip: false,
+      disableAutoFocus: false,
+      disableExif: false,
+    });
     html5QrCode.render(onScanSuccess);
   </script>
   <script type="text/javascript" src="./script.js" defer></script>
